@@ -1,0 +1,8 @@
+Dias úteis (seg-sex):
+=[DataInicio]+IF(WEEKDAY([DataInicio],2)>5,8-WEEKDAY([DataInicio],2),0)+([DuracaoDias]-1)+INT((IF(WEEKDAY([DataInicio],2)>5,0,WEEKDAY([DataInicio],2)-1)+[DuracaoDias]-1)/5)*2
+
+Dias corridos:
+=[DataInicio]+[DuracaoDias]-1
+
+Obs.: em sites em português, ao digitar a fórmula na tela troque as vírgulas por ponto e vírgula (;).
+Se as colunas tiverem nomes de exibição com acento, use-os entre colchetes: [Data início], [Duração (dias)].

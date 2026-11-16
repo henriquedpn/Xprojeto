@@ -1,0 +1,25 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json",
+  "elmType": "div",
+  "style": {
+    "display": "flex",
+    "align-items": "center",
+    "color": "=if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)+86400000<=Number(@now)),'#a4262c',if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)<=Number(@now)+604800000),'#8a5300',''))",
+    "font-weight": "=if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)+86400000<=Number(@now))||(([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)<=Number(@now)+604800000),'600','')"
+  },
+  "children": [
+    {
+      "elmType": "span",
+      "style": {
+        "padding-right": "4px"
+      },
+      "attributes": {
+        "iconName": "=if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)+86400000<=Number(@now)),'Warning',if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)<=Number(@now)+604800000),'Clock',''))"
+      }
+    },
+    {
+      "elmType": "span",
+      "txtContent": "@currentField"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "titulo": "Projetos",
+  "descricao": "Gerenciador de projetos multidisciplinar",
+  "tituloCodigo": "Código do projeto",
+  "campos": [
+    {
+      "nome": "Descricao",
+      "titulo": "Descrição",
+      "xml": "<Field Type=\"Note\" Name=\"Descricao\" StaticName=\"Descricao\" DisplayName=\"Descricao\" NumLines=\"4\" RichText=\"FALSE\" />",
+      "formatador": null
+    },
+    {
+      "nome": "Disciplina",
+      "titulo": "Disciplina",
+      "xml": "<Field Type=\"Choice\" Name=\"Disciplina\" StaticName=\"Disciplina\" DisplayName=\"Disciplina\" Format=\"Dropdown\" FillInChoice=\"TRUE\"><CHOICES><CHOICE>Arquitetura</CHOICE><CHOICE>Civil</CHOICE><CHOICE>Estrutural</CHOICE><CHOICE>Elétrica</CHOICE><CHOICE>Hidráulica</CHOICE><CHOICE>Mecânica</CHOICE><CHOICE>Automação</CHOICE><CHOICE>Planejamento</CHOICE><CHOICE>Coordenação</CHOICE></CHOICES></Field>",
+      "formatador": null
+    },
+    {
+      "nome": "Colaborador",
+      "titulo": "Colaborador",
+      "xml": "<Field Type=\"User\" Name=\"Colaborador\" StaticName=\"Colaborador\" DisplayName=\"Colaborador\" Required=\"TRUE\" UserSelectionMode=\"PeopleOnly\" UserSelectionScope=\"0\" List=\"UserInfo\" ShowField=\"ImnName\" />",
+      "formatador": null
+    },
+    {
+      "nome": "Gestor",
+      "titulo": "Gestor",
+      "xml": "<Field Type=\"User\" Name=\"Gestor\" StaticName=\"Gestor\" DisplayName=\"Gestor\" Required=\"FALSE\" UserSelectionMode=\"PeopleOnly\" UserSelectionScope=\"0\" List=\"UserInfo\" ShowField=\"ImnName\" Description=\"Chefe imediato do colaborador (usado no modo de exibição Minha equipe)\" />",
+      "formatador": null
+    },
+    {
+      "nome": "DataInicio",
+      "titulo": "Data início",
+      "xml": "<Field Type=\"DateTime\" Name=\"DataInicio\" StaticName=\"DataInicio\" DisplayName=\"DataInicio\" Format=\"DateOnly\" Required=\"TRUE\"><Default>[today]</Default></Field>",
+      "formatador": null
+    },
+    {
+      "nome": "DuracaoDias",
+      "titulo": "Duração (dias)",
+      "xml": "<Field Type=\"Number\" Name=\"DuracaoDias\" StaticName=\"DuracaoDias\" DisplayName=\"DuracaoDias\" Required=\"TRUE\" Min=\"1\" Max=\"3650\" Decimals=\"0\" Description=\"Duração estimada em dias úteis\" />",
+      "formatador": null
+    },
+    {
+      "nome": "DataFim",
+      "titulo": "Data fim",
+      "xml": "<Field Type=\"Calculated\" Name=\"DataFim\" StaticName=\"DataFim\" DisplayName=\"DataFim\" ResultType=\"DateTime\" Format=\"DateOnly\" ReadOnly=\"TRUE\"><Formula>=[DataInicio]+IF(WEEKDAY([DataInicio],2)&gt;5,8-WEEKDAY([DataInicio],2),0)+([DuracaoDias]-1)+INT((IF(WEEKDAY([DataInicio],2)&gt;5,0,WEEKDAY([DataInicio],2)-1)+[DuracaoDias]-1)/5)*2</Formula><FieldRefs><FieldRef Name=\"DataInicio\" /><FieldRef Name=\"DuracaoDias\" /></FieldRefs></Field>",
+      "formatador": "{\"$schema\":\"https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json\",\"elmType\":\"div\",\"style\":{\"display\":\"flex\",\"align-items\":\"center\",\"color\":\"=if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)+86400000<=Number(@now)),'#a4262c',if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)<=Number(@now)+604800000),'#8a5300',''))\",\"font-weight\":\"=if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)+86400000<=Number(@now))||(([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)<=Number(@now)+604800000),'600','')\"},\"children\":[{\"elmType\":\"span\",\"style\":{\"padding-right\":\"4px\"},\"attributes\":{\"iconName\":\"=if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)+86400000<=Number(@now)),'Warning',if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)<=Number(@now)+604800000),'Clock',''))\"}},{\"elmType\":\"span\",\"txtContent\":\"@currentField\"}]}"
+    },
+    {
+      "nome": "StatusProjeto",
+      "titulo": "Status",
+      "xml": "<Field Type=\"Choice\" Name=\"StatusProjeto\" StaticName=\"StatusProjeto\" DisplayName=\"StatusProjeto\" Required=\"TRUE\" Format=\"Dropdown\" FillInChoice=\"FALSE\"><Default>Não iniciado</Default><CHOICES><CHOICE>Não iniciado</CHOICE><CHOICE>Em andamento</CHOICE><CHOICE>Pausado</CHOICE><CHOICE>Concluído</CHOICE><CHOICE>Cancelado</CHOICE></CHOICES></Field>",
+      "formatador": "{\"$schema\":\"https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json\",\"elmType\":\"div\",\"txtContent\":\"@currentField\",\"style\":{\"padding\":\"2px 10px\",\"border-radius\":\"12px\",\"color\":\"white\",\"font-weight\":\"600\",\"text-align\":\"center\",\"white-space\":\"nowrap\",\"background-color\":\"=if(@currentField=='Concluído','#107c10',if(@currentField=='Em andamento','#0078d4',if(@currentField=='Pausado','#c19c00',if(@currentField=='Cancelado','#7a7574','#a19f9d'))))\"}}"
+    },
+    {
+      "nome": "PercConcluido",
+      "titulo": "% concluído",
+      "xml": "<Field Type=\"Number\" Name=\"PercConcluido\" StaticName=\"PercConcluido\" DisplayName=\"PercConcluido\" Min=\"0\" Max=\"100\" Decimals=\"0\"><Default>0</Default></Field>",
+      "formatador": "{\"$schema\":\"https://developer.microsoft.com/json-schemas/sp/v2/column-formatting.schema.json\",\"elmType\":\"div\",\"style\":{\"width\":\"100%\",\"background-color\":\"#edebe9\",\"border-radius\":\"4px\",\"height\":\"18px\"},\"children\":[{\"elmType\":\"div\",\"txtContent\":\"=if(@currentField=='','0%',@currentField+'%')\",\"style\":{\"width\":\"=if(@currentField=='','0%',@currentField+'%')\",\"min-width\":\"28px\",\"height\":\"18px\",\"line-height\":\"18px\",\"border-radius\":\"4px\",\"padding-left\":\"4px\",\"color\":\"white\",\"font-size\":\"11px\",\"background-color\":\"=if(@currentField>=100,'#107c10','#0078d4')\"}}]}"
+    },
+    {
+      "nome": "Observacoes",
+      "titulo": "Observações",
+      "xml": "<Field Type=\"Note\" Name=\"Observacoes\" StaticName=\"Observacoes\" DisplayName=\"Observacoes\" NumLines=\"4\" RichText=\"FALSE\" />",
+      "formatador": null
+    }
+  ],
+  "camposView": [
+    "LinkTitle",
+    "Descricao",
+    "Colaborador",
+    "Disciplina",
+    "DataInicio",
+    "DuracaoDias",
+    "DataFim",
+    "StatusProjeto",
+    "PercConcluido"
+  ],
+  "views": [
+    {
+      "titulo": "Meus projetos",
+      "query": "<Where><Eq><FieldRef Name=\"Colaborador\" LookupId=\"TRUE\" /><Value Type=\"Integer\"><UserID Type=\"Integer\" /></Value></Eq></Where><OrderBy><FieldRef Name=\"DataInicio\" /></OrderBy>"
+    },
+    {
+      "titulo": "Minha equipe",
+      "query": "<Where><Eq><FieldRef Name=\"Gestor\" LookupId=\"TRUE\" /><Value Type=\"Integer\"><UserID Type=\"Integer\" /></Value></Eq></Where><GroupBy Collapse=\"FALSE\" GroupLimit=\"100\"><FieldRef Name=\"Colaborador\" /></GroupBy><OrderBy><FieldRef Name=\"DataInicio\" /></OrderBy>",
+      "totais": true
+    },
+    {
+      "titulo": "Por colaborador",
+      "query": "<GroupBy Collapse=\"FALSE\" GroupLimit=\"100\"><FieldRef Name=\"Colaborador\" /></GroupBy><OrderBy><FieldRef Name=\"DataFim\" /></OrderBy>",
+      "totais": true
+    },
+    {
+      "titulo": "Atrasados",
+      "query": "<Where><And><Lt><FieldRef Name=\"DataFim\" /><Value Type=\"DateTime\"><Today /></Value></Lt><And><Neq><FieldRef Name=\"StatusProjeto\" /><Value Type=\"Choice\">Concluído</Value></Neq><Neq><FieldRef Name=\"StatusProjeto\" /><Value Type=\"Choice\">Cancelado</Value></Neq></And></And></Where><OrderBy><FieldRef Name=\"DataFim\" /></OrderBy>"
+    }
+  ],
+  "consultaPadrao": "<OrderBy><FieldRef Name=\"DataFim\" /></OrderBy>",
+  "formatadorLinha": "{\"$schema\":\"https://developer.microsoft.com/json-schemas/sp/v2/row-formatting.schema.json\",\"additionalRowClass\":\"=if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)+86400000<=Number(@now)),'sp-field-severity--severeWarning',if((([$StatusProjeto]!='Concluído'&&[$StatusProjeto]!='Cancelado'&&[$DataInicio]!='')&&(Number([$DataInicio])+((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,7-((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7),0))+([$DuracaoDias]-1)+floor(((if(((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)>4,0,((floor((Number([$DataInicio])+43200000)/86400000)+3)-floor((floor((Number([$DataInicio])+43200000)/86400000)+3)/7)*7)))+([$DuracaoDias]-1))/5)*2)*86400000)<=Number(@now)+604800000),'sp-field-severity--warning',''))\"}",
+  "totais": "<FieldRef Name=\"LinkTitle\" Type=\"COUNT\" />",
+  "formulario": "{\"headerJSONFormatter\":\"{\\\"elmType\\\":\\\"div\\\",\\\"style\\\":{\\\"display\\\":\\\"flex\\\",\\\"align-items\\\":\\\"center\\\",\\\"margin-bottom\\\":\\\"12px\\\"},\\\"children\\\":[{\\\"elmType\\\":\\\"span\\\",\\\"attributes\\\":{\\\"iconName\\\":\\\"ProjectCollection\\\"},\\\"style\\\":{\\\"font-size\\\":\\\"28px\\\",\\\"padding-right\\\":\\\"10px\\\",\\\"color\\\":\\\"#0078d4\\\"}},{\\\"elmType\\\":\\\"div\\\",\\\"style\\\":{\\\"font-size\\\":\\\"22px\\\",\\\"font-weight\\\":\\\"600\\\"},\\\"txtContent\\\":\\\"=if([$Title]=='','Novo projeto','Projeto ' + [$Title])\\\"}]}\",\"bodyJSONFormatter\":\"{\\\"sections\\\":[{\\\"displayname\\\":\\\"Identificação\\\",\\\"fields\\\":[\\\"Código do projeto\\\",\\\"Descrição\\\",\\\"Disciplina\\\"]},{\\\"displayname\\\":\\\"Responsáveis\\\",\\\"fields\\\":[\\\"Colaborador\\\",\\\"Gestor\\\"]},{\\\"displayname\\\":\\\"Prazo\\\",\\\"fields\\\":[\\\"Data início\\\",\\\"Duração (dias)\\\"]},{\\\"displayname\\\":\\\"Andamento\\\",\\\"fields\\\":[\\\"Status\\\",\\\"% concluído\\\",\\\"Observações\\\"]}]}\",\"footerJSONFormatter\":\"\"}"
+}
