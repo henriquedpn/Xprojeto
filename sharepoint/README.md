@@ -58,6 +58,25 @@ Install-Module PnP.PowerShell -Scope CurrentUser
 
 O script lê [`definicao-lista.json`](definicao-lista.json), que tem as mesmas definições do script do navegador.
 
+## Alternativa em Python
+
+Faz o mesmo que o PowerShell, em Windows, Linux ou Mac:
+
+```bash
+pip install -r requirements.txt
+python criar_lista_projetos.py --site https://suaempresa.sharepoint.com/sites/Projetos --client-id <id-do-app>
+```
+
+- O login abre o navegador (conta Microsoft 365 da empresa). Em servidor sem navegador, use `--device-code`.
+- `--tenant suaempresa.onmicrosoft.com`: necessário se o app for de um único tenant.
+- `--token <token>`: usa um token de acesso já obtido por outro meio.
+
+O App Registration no Entra ID precisa de:
+
+1. plataforma **Aplicativos móveis e da área de trabalho** com o redirect URI `http://localhost`;
+2. **Permitir fluxos de clientes públicos = Sim**;
+3. permissão delegada **SharePoint › AllSites.Manage**, com consentimento do administrador.
+
 ## Alternativa manual
 
 Os arquivos em [`formatacao/`](formatacao) podem ser colados direto na interface:
