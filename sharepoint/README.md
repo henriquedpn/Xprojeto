@@ -93,6 +93,11 @@ Os arquivos em [`formatacao/`](formatacao) podem ser colados direto na interface
 > Os JSONs de formatação usam os **nomes internos** `DataInicio`, `DuracaoDias` e `StatusProjeto`. Na montagem
 > manual, crie as colunas primeiro com esses nomes (sem espaço nem acento) e só depois renomeie para o nome de exibição.
 
+## Power App pronto para a lista
+
+A pasta [`powerapp/`](powerapp) tem um app de tela gerado por Python (`GerenciadorProjetos.msapp`), com as
+telas Projetos, Formulário e Dashboard por colaborador. Veja o [guia do Power App](powerapp/README.md).
+
 ## Depois de criar (2 minutos, opcional)
 
 1. **Quadro (Kanban)**: Exibir opções › Criar novo modo de exibição › **Quadro**, organizado por **Status**.
