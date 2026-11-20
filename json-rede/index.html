@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON Compartilhado</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>JSON Compartilhado na Rede</h1>
+    <div class="usuario">
+      <label for="nomeUsuario">Seu nome:</label>
+      <input id="nomeUsuario" type="text" maxlength="40" placeholder="Ex.: Henrique">
+    </div>
+  </header>
+
+  <section id="semSuporte" class="aviso erro oculto">
+    Este navegador não suporta a <b>File System Access API</b>.
+    Use o <b>Google Chrome</b> ou o <b>Microsoft Edge</b> (versão desktop).
+  </section>
+
+  <section class="painel">
+    <div class="linha">
+      <button id="btnEscolherPasta">📁 Escolher pasta da rede</button>
+      <button id="btnReconectar" class="oculto">🔄 Reconectar à última pasta</button>
+      <span id="nomePasta" class="muted">Nenhuma pasta selecionada</span>
+    </div>
+
+    <div class="linha status">
+      <div>Arquivo: <b id="infoVersao">—</b></div>
+      <div>Bloqueio: <span id="statusLock" class="pill neutro">—</span></div>
+    </div>
+
+    <div class="linha">
+      <button id="btnEditar" disabled>✏️ Editar</button>
+      <button id="btnAdicionar" disabled>➕ Novo registro</button>
+      <button id="btnSalvar" class="primario" disabled>💾 Salvar</button>
+      <button id="btnCancelar" disabled>✖ Cancelar</button>
+      <span class="espaco"></span>
+      <button id="btnRestaurar" class="oculto">♻️ Restaurar backup</button>
+      <button id="btnForcar" class="perigo" disabled title="Use só se tiver certeza de que o outro usuário não está mais editando">⚠️ Forçar liberação</button>
+    </div>
+  </section>
+
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th style="width:70px">ID</th>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th style="width:140px">Status</th>
+          <th style="width:60px"></th>
+        </tr>
+      </thead>
+      <tbody id="corpoTabela">
+        <tr><td colspan="5" class="muted centro">Selecione a pasta da rede para começar.</td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <section class="painel">
+    <h2>Log</h2>
+    <ul id="log"></ul>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
