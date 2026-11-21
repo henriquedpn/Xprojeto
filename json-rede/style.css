@@ -10,6 +10,24 @@
   --erro: #b91c1c;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fundo: #0f172a; --cartao: #1e293b; --texto: #e2e8f0; --muted: #94a3b8; --borda: #334155;
+  }
+}
+:root[data-theme="dark"] {
+  --fundo: #0f172a; --cartao: #1e293b; --texto: #e2e8f0; --muted: #94a3b8; --borda: #334155;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) button,
+  :root:not([data-theme="light"]) td input,
+  :root:not([data-theme="light"]) td select,
+  :root:not([data-theme="light"]) td textarea { background: #0f172a; color: var(--texto); }
+  :root:not([data-theme="light"]) th { background: #273449; }
+  :root:not([data-theme="light"]) tr.editando td { background: #1a2740; }
+  :root:not([data-theme="light"]) button:hover:not(:disabled) { background: #273449; }
+}
+
 * { box-sizing: border-box; }
 
 body {

@@ -542,7 +542,14 @@ async function escolherPasta() {
     const dir = await window.showDirectoryPicker({ id: 'json-rede', mode: 'readwrite' });
     await conectar(dir);
   } catch (e) {
-    if (e.name !== 'AbortError') log('Erro ao abrir pasta: ' + e.message, 'erro');
+    if (e.name === 'AbortError') return;
+    if (window.self !== window.top) {
+      $('semSuporte').innerHTML = 'Esta página está aberta dentro de outra (ex.: visualização do claude.ai) e o navegador ' +
+        'não deixa escolher pastas assim. Baixe o <b>index.html</b>, <b>app.js</b> e <b>style.css</b> para a mesma pasta ' +
+        'e abra o <b>index.html</b> direto no Chrome ou Edge.';
+      $('semSuporte').classList.remove('oculto');
+    }
+    log('Erro ao abrir pasta: ' + e.message, 'erro');
   }
 }
 
